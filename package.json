@@ -1,18 +1,18 @@
 {
   "name": "react-hook-executer",
   "version": "1.0.0",
-  "description": "\"executer\"",
+  "description": "executer",
   "main": "index.js",
   "scripts": {
-    "test": "\"npm run test\""
+    "test": "npm run test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shivajisurwase/react-hook-executer.git"
   },
   "keywords": [
-    "\"hooks",
-    "executer\""
+    "hooks",
+    "executer"
   ],
   "author": "Shivaji & Shyamal",
   "license": "Apache-2.0",
