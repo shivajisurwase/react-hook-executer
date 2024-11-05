@@ -1,80 +1,55 @@
-/* eslint-disable */
 /* @uthor: Shivaji & Shyamal */
+/* Perpose : "Allows a programmer to register custom hooks dynamically in React.js" */
 
-var _react = _interopRequireWildcard(require('react'));
-function _getRequireWildcardCache() { if (typeof WeakMap !== 'function') return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== 'object' && typeof obj !== 'function') { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+import React from 'react';
+
 class HooksExecuter {
     constructor() {
-        this.__hooks = {};
-        this.__temp = {};
+        this.a = {};
+        this.tmp = {};
         this.setHook = this.setHook.bind(this);
         this.getHook = this.getHook.bind(this);
         this.putHooks = this.putHooks.bind(this);
     }
-    /**
-     * Add hook
-     * @param {string} name hook name
-     * @param {function} hook hook function
-     */
 
-    setHook(name, hook) {
-        [{
-            value: name,
-            id: 'name',
-            type: 'string'
-        }, {
-            value: hook,
-            id: 'hook',
-            type: 'function'
-        }].forEach(({
-            value,
-            id,
-            type
-        }) => {
-            if (typeof value !== type) throw new TypeError("\"".concat(id, "\" expected to be of type ").concat(type));
+    setHook(n, h) {
+        [
+            { value: n, id: 'name', type: 'string' },
+            { value: h, id: 'hook', type: 'function' }
+        ].forEach(({ value, id, type }) => {
+            if ((type === 'string' && typeof value !== 'string')) {
+                throw new TypeError(`"${id}" expected to be of type ${type}`);
+            }
         });
-        this.__hooks[name] = {
-            name,
-            hook
-        };
+        this.a[n] = { n, h };
         return this;
     }
-    /**
-     *
-     * @param {string} name hook name
-     * @param {function} hook hook fynction
-     */
 
-    putHooks(name, result) {
-        this.__temp[name] = result;
+    putHooks(n, r) {
+        this.tmp[n] = r;
     }
 
     component() {
         const EmptyComponent = () => {
-            Object.values(this.__hooks).forEach(({
-                name,
-                hook
-            }) => this.putHooks(name, hook()));
-            return /*#__PURE__*/_react.default.createElement(_react.Fragment, null);
+            const that = this;
+            Object.values(that.a).forEach(({ n, h }) => {
+                that.putHooks(n, h());
+            });
+            return React.createElement(
+                React.Fragment,
+                null,
+            );
         };
-
         return EmptyComponent;
     }
-    /**
-     * Get hook
-     * @param {string} name hook name
-     * @returns {any}
-     */
-    getHook(name) {
-        return this.__temp[name];
+
+    getHook(n) {
+        return this.tmp[n];
     }
 }
 
-const instance = new HooksExecuter();
-const ReactHooksWrapper = instance.component();
+const o = new HooksExecuter();
+const ReactHooksWrapper = o.component();
+const { getHook, setHook } = o;
 
-const getHook = instance.getHook,
-    setHook = instance.setHook;
-export default { ReactHooksWrapper, getHook, setHook }
-/* eslint-enable */
+export { ReactHooksWrapper, getHook, setHook };
