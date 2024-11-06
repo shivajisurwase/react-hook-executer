@@ -1,9 +1,9 @@
 {
   "name": "react-hook-executer",
-  "version": "1.0.2",
-  "description": "executer",
+  "version": "1.1.0",
+  "description": "Allows a programmer to easily register custom hooks dynamically in React.js.",
   "main": "index.js",
-  "type" :"module",
+  "type": "module",
   "scripts": {
     "test": "npm run test"
   },
@@ -11,14 +11,26 @@
     "type": "git",
     "url": "git+https://github.com/shivajisurwase/react-hook-executer.git"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=0.10.0"
+  },
   "keywords": [
+    "react",
+    "react js",
     "hooks",
-    "executer"
+    "hooks executer",
+    "react hook",
+    "custom hook"
   ],
   "author": "Shivaji & Shyamal",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/shivajisurwase/react-hook-executer/issues"
   },
-  "homepage": "https://github.com/shivajisurwase/react-hook-executer#readme"
+  "homepage": "https://www.npmjs.com/~shivaji.surwase"
 }
